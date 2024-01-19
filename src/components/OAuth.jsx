@@ -28,7 +28,7 @@ const OAuth = () => {
         `${import.meta.env.VITE_URL}/auth/google`,
         userData
       );
-      console.log(res);
+
       if (res.data) {
         dispatch(signInSuccess(res.data));
         navigate("/");
