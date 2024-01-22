@@ -26,9 +26,9 @@ const OAuth = () => {
       };
       const res = await axios.post(
         `${import.meta.env.VITE_URL}/auth/google`,
-        userData
+        userData,
+        { withCredentials: true }
       );
-
       if (res.data) {
         dispatch(signInSuccess(res.data));
         navigate("/");

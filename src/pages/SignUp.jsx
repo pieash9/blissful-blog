@@ -2,6 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
+import axios from "axios";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -22,19 +23,17 @@ const SignUp = () => {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch(`http://localhost:5000/api/v1/auth/signup`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
+      const res = await axios.post(
+        `${import.meta.env.VITE_URL}/auth/signup`,
+        formData
+      );
 
-      if (data.success === false) {
-        return setErrorMessage(data.message);
+      if (!res.data) {
+        return setErrorMessage(res.data.message);
       }
       setLoading(false);
 
-      if (res.ok) {
+      if (res.data) {
         navigate("/sign-in");
       }
     } catch (error) {
