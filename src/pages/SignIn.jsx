@@ -25,6 +25,7 @@ const SignIn = () => {
 
     if (!formData.email || !formData.password) {
       dispatch(signInFailure("Please fill out all fields"));
+      return;
     }
     try {
       dispatch(signInStart());
@@ -33,16 +34,26 @@ const SignIn = () => {
         formData,
         { withCredentials: true }
       );
-      if (!res.data) {
-        dispatch(signInFailure("Failed to sign in"));
+
+      // Assuming your server responds with an error message for user not found
+      if (res.data && res.data.error) {
+        dispatch(signInFailure(res.data.error));
+        return;
       }
 
+      // Handle other success scenarios
       if (res.data) {
         dispatch(signInSuccess(res.data));
         navigate("/");
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      // Check if the error is a 404 Not Found and handle it accordingly
+      if (error.response && error.response.status === 404) {
+        dispatch(signInFailure("User not found"));
+      } else {
+        // Handle other errors
+        dispatch(signInFailure(error.message));
+      }
     }
   };
   return (
