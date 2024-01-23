@@ -40,7 +40,7 @@ const CreatePost = () => {
           setImageUploadProgress(progress.toFixed(0));
         },
         (error) => {
-          setImageUploadError("Image upload failed");
+          setImageUploadError("Image upload failed", error);
           setImageUploadProgress(null);
         },
         () => {
@@ -65,7 +65,6 @@ const CreatePost = () => {
         formData,
         { withCredentials: true }
       );
-      console.log(res.data);
       if (!res.data) {
         setPublishError(res.data);
         return;
