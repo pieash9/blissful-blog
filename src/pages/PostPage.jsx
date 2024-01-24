@@ -2,6 +2,7 @@ import axios from "axios";
 import { Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import CommentSection from "../components/comment/CommentSection";
 
 const PostPage = () => {
   const { postSlug } = useParams();
@@ -38,6 +39,7 @@ const PostPage = () => {
         <Spinner size="xl" />
       </div>
     );
+  if (error) return <div>Something went wrong.</div>;
   return (
     <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
       <h1 className="text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:max-w-4xl">
@@ -64,6 +66,8 @@ const PostPage = () => {
         className="p-3 max-w-2xl mx-auto w-full post-content"
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
+
+      <CommentSection postId={post._id} />
     </main>
   );
 };
