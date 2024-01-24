@@ -56,9 +56,7 @@ const DashUsers = () => {
     setShowModal(false);
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_URL}/user/deleteUser/${userIdToDelete}/${
-          currentUser._id
-        }`,
+        `${import.meta.env.VITE_URL}/user/delete/${userIdToDelete}`,
         { withCredentials: true }
       );
       if (!res.data) {
