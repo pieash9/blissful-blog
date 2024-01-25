@@ -27,7 +27,7 @@ const Home = () => {
         <h1 className="text-3xl lg:text-6xl font-bold">
           Welcome to BLISSFUL BLOG
         </h1>
-        <p className="text-gray-500 text-xs sm:text-sm">
+        <p className="text-gray-500 dark:text-gray-300 text-xs sm:text-sm">
           Discover a world of stories and insights on our blogging platform,
           where every post is a journey into unique perspectives. Join our
           community, share your thoughts, and explore a diverse tapestry of
@@ -35,7 +35,7 @@ const Home = () => {
         </p>
         <Link
           to="/search"
-          className="text-xs sm:text-sm text-teal-500 font-bold hover:underline"
+          className=" sm:text-lg text-teal-500 font-bold hover:underline"
         >
           View all post
         </Link>

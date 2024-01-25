@@ -102,7 +102,7 @@ const Search = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-7 border-b md:border-r md:min-h-screen border-gray-500">
+      <div className="p-7 border-b md:border-r md:min-h-screen border-gray-400/60">
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex items-center gap-2 ">
             <label className="whitespace-nowrap font-semibold" htmlFor="">
@@ -124,6 +124,7 @@ const Search = () => {
               onChange={handleChange}
               defaultValue={sideBarData.sort}
               id="sort"
+              className="w-full"
             >
               <option value="desc">Latest</option>
               <option value="asc">Oldest</option>
@@ -150,7 +151,7 @@ const Search = () => {
         </form>
       </div>
       <div className="w-full">
-        <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5">
+        <h1 className="text-3xl font-semibold sm:border-b border-gray-400/60 p-3 mt-5">
           Posts Result:
         </h1>
         <div className="p-7 flex flex-wrap gap-4">
